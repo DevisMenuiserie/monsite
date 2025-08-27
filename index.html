@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Arnaud Fourcade - Expert Tryba Meuse | Votre Conseiller Menuiserie</title>
+	<meta name="description" content="Arnaud Fourcade, votre conseiller Tryba Meuse pour fenêtres, portes, vérandas, volets et portes de garage. Accompagnement personnalisé de A à Z." />
+	<meta name="theme-color" content="#0072ba" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kaushan+Script&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root{
+			--hero-image:url('assets/hero.jpg');
+			--tryba-blue:#0066cc; --aubergine:#1a1f3a; --sarcelle:#00b4a6;
+			--accent-orange:#ff6b35; --accent-purple:#6c5ce7; --accent-green:#00d084;
+			--bg:linear-gradient(135deg, #f8faff 0%, #e8f4fd 100%); --text:#0f1419; --muted:#4a5568; 
+			--card:#ffffff; --shadow:rgba(0,0,0,.08); --shadow-hover:rgba(0,0,0,.18);
+			--shadow-colored:rgba(0,102,204,.15); --shadow-accent:rgba(255,107,53,.12);
+			--lift: translateY(-8px); --lift-small: translateY(-4px);
+			--transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+			--border-radius: 20px; --border-radius-small: 12px;
+			--gradient-primary: linear-gradient(135deg, var(--tryba-blue) 0%, var(--sarcelle) 100%);
+			--gradient-secondary: linear-gradient(135deg, var(--aubergine) 0%, var(--accent-purple) 100%);
+			--gradient-accent: linear-gradient(135deg, var(--accent-orange) 0%, #ff8f65 100%);
+		}
+		*{box-sizing:border-box; margin:0; padding:0;}
+		html{scroll-behavior:smooth}
+		body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);background-attachment:fixed;line-height:1.6; font-weight:500;}
+		.container{width:min(1200px,92vw);margin:0 auto}
+		.grid{display:grid;gap:28px}
+		.grid-3{grid-template-columns:repeat(3,1fr)}
+		.grid-4{grid-template-columns:repeat(4,1fr)}
+		@media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+		@media(max-width:768px){.grid-3,.grid-4{grid-template-columns:1fr}}
+
+		/* Header amélioré */
+		header.site-header{
+			position:sticky;
+			top:0;
+			z-index:100;
+			background:rgba(255,255,255,0.92);
+			backdrop-filter: blur(12px);
+			border-bottom:1px solid rgba(0,102,204,0.1);
+			box-shadow: 0 8px 32px rgba(0,0,0,0.06), 0 2px 8px rgba(0,102,204,0.08);
+			transition: var(--transition);
+		}
+		.header-inner{
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			padding:14px 0;
+			transition: var(--transition);
+		}
+		.brand{
+			display:flex;
+			align-items:center;
+			gap:14px;
+		}
+		.logo-box{
+			width:130px;
+			height:38px;
+			background:var(--gradient-primary);
+			color:#fff;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			font-weight:800;
+			letter-spacing:.5px;
+			border-radius: var(--border-radius-small);
+			transition: var(--transition);
+			box-shadow: 0 4px 12px var(--shadow-colored);
+		}
+		.logo-box:hover {
+			transform: scale(1.05) var(--lift-small);
+			box-shadow: 0 8px 24px var(--shadow-colored);
+		}
+		.btn{
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			background:var(--gradient-primary);
+			color:#fff;
+			border:none;
+			padding:16px 28px;
+			border-radius:var(--border-radius-small);
+			font-weight:600;
+			text-decoration:none;
+			cursor:pointer;
+			overflow:hidden;
+			position:relative;
+			transition: var(--transition);
+			gap: 10px;
+			box-shadow: 0 4px 16px var(--shadow-colored);
+			font-size: 15px;
+		}
+		.btn:hover {
+			transform: var(--lift);
+			box-shadow: 0 12px 32px var(--shadow-colored);
+		}
+		.btn.secondary{
+			background:var(--gradient-secondary);
+			box-shadow: 0 4px 16px rgba(26,31,58,0.2);
+		}
+		.btn.secondary:hover {
+			box-shadow: 0 12px 32px rgba(26,31,58,0.3);
+		}
+		.btn.accent{
+			background:var(--gradient-accent);
+			box-shadow: 0 4px 16px var(--shadow-accent);
+		}
+		.btn.accent:hover {
+			box-shadow: 0 12px 32px var(--shadow-accent);
+		}
+		.btn .ripple{
+			position:absolute;
+			border-radius:999px;
+			transform:scale(0);
+			opacity:.35;
+			background:#fff;
+			width:12px;
+			height:12px;
+			pointer-events:none;
+			animation:ripple .6s ease-out forwards;
+			mix-blend-mode:screen;
+		}
+		@keyframes ripple{to{transform:scale(22);opacity:0}}
+
+		/* Hero section améliorée */
+		.hero{
+			padding: 80px 0;
+			background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.9) 50%, rgba(232,244,253,0.95) 100%);
+			position: relative;
+			overflow: hidden;
+		}
+		.hero::before {
+			content: '';
+			position: absolute;
+			top: -120px;
+			right: -120px;
+			width: 350px;
+			height: 350px;
+			background: radial-gradient(circle, rgba(0,102,204,0.08) 0%, rgba(0,180,166,0.04) 70%, transparent 100%);
+			border-radius: 50%;
+			z-index: 0;
+			animation: float 6s ease-in-out infinite;
+		}
+		.hero::after {
+			content: '';
+			position: absolute;
+			bottom: -180px;
+			left: -180px;
+			width: 450px;
+			height: 450px;
+			background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, rgba(108,92,231,0.04) 70%, transparent 100%);
+			border-radius: 50%;
+			z-index: 0;
+			animation: float 8s ease-in-out infinite reverse;
+		}
+		@keyframes float {
+			0%, 100% { transform: translateY(0px) rotate(0deg); }
+			50% { transform: translateY(-20px) rotate(5deg); }
+		}
+		.hero-inner{
+			display:grid;
+			grid-template-columns:1.1fr .9fr;
+			gap:40px;
+			align-items:center;
+			position: relative;
+			z-index: 2;
+		}
+		@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+		h1{
+			margin:0 0 12px 0;
+			color:var(--aubergine);
+			font-size:clamp(32px,5vw,48px);
+			font-weight:800;
+			line-height: 1.2;
+		}
+		.hero p{
+			margin:0 0 24px 0;
+			color:var(--muted);
+			font-size: 18px;
+			font-weight: 500;
+			max-width: 90%;
+		}
+		.hero-cta {
+			display: flex;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+		.hero-visual{
+			min-height:420px;
+			border-radius:var(--border-radius);
+			border:2px solid rgba(0,102,204,0.1);
+			box-shadow:0 20px 60px var(--shadow-hover), 0 8px 24px var(--shadow-colored);
+			background-image:var(--hero-image);
+			background-size:cover;
+			background-position:center;
+			position:relative;
+			overflow: hidden;
+			transition: var(--transition);
+		}
+		.hero-visual:hover {
+			transform: scale(1.02) var(--lift-small);
+			box-shadow:0 32px 80px var(--shadow-hover), 0 12px 32px var(--shadow-colored);
+			border-color: rgba(0,102,204,0.2);
+		}
+		.hero-visual::before{
+			content:"";
+			position:absolute;
+			left:14px;
+			top:14px;
+			width:12px;
+			height:12px;
+			border-radius:50%;
+			background:var(--sarcelle);
+			box-shadow:0 0 0 0 rgba(55,167,166,.36);
+			animation:ping 2.4s ease-out infinite;
+			z-index: 2;
+		}
+		.hero-badge {
+			position: absolute;
+			bottom: 24px;
+			left: 24px;
+			background: rgba(255,255,255,0.95);
+			backdrop-filter: blur(8px);
+			padding: 12px 20px;
+			border-radius: 50px;
+			font-size: 15px;
+			font-weight: 700;
+			color: var(--aubergine);
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			box-shadow: 0 8px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,102,204,0.1);
+			border: 1px solid rgba(0,102,204,0.1);
+		}
+		@keyframes ping{0%{transform:scale(.9);box-shadow:0 0 0 0 rgba(55,167,166,.36)}70%{box-shadow:0 0 0 12px rgba(55,167,166,0)}100%{transform:scale(1)}}
+
+		.section{
+			padding:60px 0;
+			position: relative;
+		}
+		.section-title{
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.section h2{
+			font-family:'Kaushan Script',cursive;
+			color:var(--tryba-blue);
+			font-size:clamp(28px,4vw,42px);
+			margin:0 0 12px 0;
+			position:relative;
+			display: inline-block;
+		}
+		.section h2::after{
+			content:"";
+			position:absolute;
+			left:0;
+			bottom:0;
+			width:100%;
+			height:3px;
+			background:linear-gradient(90deg, var(--tryba-blue), transparent);
+			opacity:.85;
+			border-radius: 3px;
+		}
+		.subtitle{
+			color:var(--muted);
+			font-size: 18px;
+			margin:8px auto 30px;
+			max-width: 700px;
+			text-align: center;
+		}
+		.card{
+			background:var(--card);
+			border:2px solid rgba(0,102,204,0.08);
+			border-radius:var(--border-radius);
+			padding:28px;
+			box-shadow:0 8px 24px var(--shadow), 0 2px 8px rgba(0,102,204,0.05);
+			transition:var(--transition);
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			overflow: hidden;
+		}
+		.card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background: var(--gradient-primary);
+			opacity: 0;
+			transition: var(--transition);
+		}
+		.card:hover{
+			transform:var(--lift);
+			box-shadow:0 24px 48px var(--shadow-hover), 0 8px 24px var(--shadow-colored);
+			border-color:rgba(0,102,204,0.15);
+		}
+		.card:hover::before {
+			opacity: 1;
+		}
+		.card h3{
+			margin:12px 0;
+			color:var(--aubergine);
+			font-size:20px;
+			font-weight: 700;
+		}
+		.card p{
+			margin:8px 0 0;
+			color:var(--muted);
+			font-size:16px;
+			flex-grow: 1;
+		}
+		.card-icon {
+			font-size: 36px;
+			width: 70px;
+			height: 70px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(135deg, rgba(0,102,204,0.1) 0%, rgba(0,180,166,0.1) 100%);
+			border-radius: var(--border-radius-small);
+			color: var(--tryba-blue);
+			transition: var(--transition);
+			box-shadow: 0 4px 12px rgba(0,102,204,0.1);
+		}
+		.card:hover .card-icon {
+			transform: scale(1.1);
+			background: linear-gradient(135deg, rgba(0,102,204,0.15) 0%, rgba(0,180,166,0.15) 100%);
+			box-shadow: 0 8px 20px rgba(0,102,204,0.2);
+		}
+
+		.advantages .picto{
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			text-align:center;
+			gap:20px;
+			padding:32px 24px;
+			background:var(--card);
+			border:2px solid rgba(0,102,204,0.08);
+			border-radius:var(--border-radius);
+			box-shadow:0 8px 24px var(--shadow), 0 2px 8px rgba(0,102,204,0.05);
+			transition:var(--transition);
+			position: relative;
+			overflow: hidden;
+		}
+		.advantages .picto::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 3px;
+			background: var(--gradient-accent);
+			opacity: 0;
+			transition: var(--transition);
+		}
+		.advantages .picto:hover{
+			transform:var(--lift);
+			box-shadow:0 24px 48px var(--shadow-hover), 0 8px 24px var(--shadow-accent);
+			border-color:rgba(255,107,53,0.15);
+		}
+		.advantages .picto:hover::before {
+			opacity: 1;
+		}
+		.advantages img{
+			width:80px;
+			height:80px;
+			object-fit:contain;
+			background:#fff;
+			border-radius:12px;
+			border:1px solid #eef3fa;
+			padding: 8px;
+		}
+		.advantages .label{
+			font-weight:600;
+			color:var(--aubergine);
+			font-size: 16px;
+		}
+
+		/* Offre Triple Performance */
+		.offer{
+			padding:80px 0;
+			background:linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,248,255,0.8) 50%, rgba(232,244,253,0.9) 100%);
+			position: relative;
+		}
+		.offer::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(0,102,204,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(0,180,166,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+			opacity: 0.3;
+			z-index: 0;
+		}
+		.offer .lead{
+			color:var(--muted);
+			margin:-6px 0 24px 0;
+			font-size: 18px;
+			text-align: center;
+		}
+		.offer-cards{
+			display:grid;
+			gap:24px;
+			grid-template-columns:repeat(3,1fr);
+		}
+		@media(max-width:900px){.offer-cards{grid-template-columns:1fr}}
+		.ocard{
+			background:var(--card);
+			border:2px solid rgba(0,102,204,0.08);
+			border-radius:var(--border-radius);
+			box-shadow:0 12px 32px var(--shadow), 0 4px 12px rgba(0,102,204,0.08);
+			padding:32px;
+			transition:var(--transition);
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+		.ocard::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			background: var(--gradient-primary);
+		}
+		.ocard:nth-child(2)::before {
+			background: var(--gradient-secondary);
+		}
+		.ocard:nth-child(3)::before {
+			background: var(--gradient-accent);
+		}
+		.ocard:hover{
+			transform:var(--lift);
+			box-shadow:0 28px 56px var(--shadow-hover), 0 12px 32px var(--shadow-colored);
+			border-color:rgba(0,102,204,0.2);
+		}
+		.ocard h3{
+			margin:0 0 12px;
+			color:var(--aubergine);
+			font-size:20px;
+			font-weight: 700;
+		}
+		.ocard p{
+			margin:0;
+			color:var(--muted);
+			font-size:16px;
+		}
+		.badge-offer{
+			display:inline-flex;
+			align-items: center;
+			gap: 8px;
+			background:var(--gradient-primary);
+			color:#fff;
+			border-radius:50px;
+			padding:10px 18px;
+			font-weight:700;
+			font-size:14px;
+			margin-bottom:20px;
+			box-shadow: 0 4px 12px var(--shadow-colored);
+			transition: var(--transition);
+		}
+		.ocard:nth-child(2) .badge-offer {
+			background: var(--gradient-secondary);
+			box-shadow: 0 4px 12px rgba(26,31,58,0.2);
+		}
+		.ocard:nth-child(3) .badge-offer {
+			background: var(--gradient-accent);
+			box-shadow: 0 4px 12px var(--shadow-accent);
+		}
+		.ocard:hover .badge-offer {
+			transform: scale(1.05);
+		}
+
+		/* Triple Garantie */
+		.guarantee{
+			padding:60px 0;
+			background:#fff;
+		}
+		.guarantee .lead{
+			color:var(--muted);
+			margin:-6px 0 24px 0;
+			font-size: 18px;
+			text-align: center;
+		}
+		.guarantee .cards{
+			display:grid;
+			gap:24px;
+			grid-template-columns:repeat(3,1fr);
+		}
+		@media(max-width:900px){.guarantee .cards{grid-template-columns:1fr}}
+		.gcard{
+			background:#fff;
+			border:1px solid #e9eef5;
+			border-radius:16px;
+			overflow:hidden;
+			box-shadow:0 4px 12px var(--shadow);
+			transition:var(--transition);
+		}
+		.gcard:hover{
+			transform:var(--lift);
+			box-shadow:0 16px 36px var(--shadow-hover);
+			border-color:#dfe7f1;
+		}
+		.gmedia{
+			height:180px;
+			background:#eef3fa;
+			overflow: hidden;
+		}
+		.gmedia img{
+			width:100%;
+			height:100%;
+			object-fit:cover;
+			display:block;
+			transition: transform 0.5s ease;
+		}
+		.gcard:hover .gmedia img {
+			transform: scale(1.05);
+		}
+		.gcontent{
+			padding:20px;
+		}
+		.gcontent h3{
+			margin:0 0 12px;
+			font-size:20px;
+			color:var(--aubergine);
+			font-weight: 700;
+		}
+		.gcontent p{
+			margin:0;
+			color:var(--muted);
+			font-size:16px;
+		}
+		.glist{
+			margin:12px 0 0;
+			padding-left:20px;
+		}
+		.glist li{
+			margin:8px 0;
+			color: var(--muted);
+		}
+		.guarantee-cta{
+			margin-top:24px;
+			background:#f3f7fb;
+			border:1px solid #e1e9f3;
+			border-radius:16px;
+			padding:24px;
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			gap:16px;
+		}
+		@media(max-width:640px){.guarantee-cta{flex-direction:column;align-items:flex-start}}
+		.guarantee-cta strong {
+			font-size: 18px;
+			color: var(--aubergine);
+		}
+
+		/* Conseiller - Section améliorée */
+		.advisor-section {
+			background: linear-gradient(135deg, rgba(248,250,255,0.9) 0%, rgba(255,255,255,0.95) 50%, rgba(240,248,255,0.9) 100%);
+			padding: 100px 0;
+			position: relative;
+			overflow: hidden;
+		}
+		.advisor-section::before {
+			content: '';
+			position: absolute;
+			top: -80px;
+			right: -80px;
+			width: 280px;
+			height: 280px;
+			background: radial-gradient(circle, rgba(0,102,204,0.08) 0%, rgba(255,107,53,0.04) 70%, transparent 100%);
+			border-radius: 50%;
+			z-index: 0;
+			animation: float 10s ease-in-out infinite;
+		}
+		.advisor-section::after {
+			content: '';
+			position: absolute;
+			bottom: -100px;
+			left: -100px;
+			width: 320px;
+			height: 320px;
+			background: radial-gradient(circle, rgba(0,180,166,0.06) 0%, rgba(108,92,231,0.04) 70%, transparent 100%);
+			border-radius: 50%;
+			z-index: 0;
+			animation: float 12s ease-in-out infinite reverse;
+		}
+		.advisor{
+			display:grid;
+			grid-template-columns:1fr 1.2fr;
+			gap:40px;
+			align-items: center;
+			position: relative;
+			z-index: 2;
+		}
+		@media(max-width:900px){.advisor{grid-template-columns:1fr}}
+		.advisor-photo {
+			position: relative;
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			box-shadow: 0 24px 60px rgba(0,0,0,0.12), 0 8px 24px var(--shadow-colored);
+			transition: var(--transition);
+			border: 3px solid rgba(0,102,204,0.1);
+		}
+		.advisor-photo:hover {
+			transform: scale(1.03) var(--lift-small);
+			box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 12px 32px var(--shadow-colored);
+			border-color: rgba(0,102,204,0.2);
+		}
+		.advisor-photo img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 20px;
+			transition: var(--transition);
+		}
+		.advisor-badge {
+			position: absolute;
+			bottom: 20px;
+			left: 20px;
+			background: rgba(255,255,255,0.95);
+			padding: 10px 16px;
+			border-radius: 30px;
+			font-size: 14px;
+			font-weight: 700;
+			color: var(--tryba-blue);
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		}
+		.advisor .bio {
+			padding: 20px 0;
+		}
+		.advisor .name{
+			font-size:28px;
+			font-weight:800;
+			color:var(--aubergine);
+			margin-bottom: 8px;
+		}
+		.advisor .title {
+			font-size: 18px;
+			color: var(--tryba-blue);
+			font-weight: 600;
+			margin-bottom: 20px;
+			display: block;
+		}
+		.advisor p {
+			color: var(--muted);
+			margin-bottom: 20px;
+			font-size: 17px;
+			line-height: 1.7;
+		}
+		.advisor ul{
+			padding-left:20px;
+			margin:16px 0 0;
+		}
+		.advisor li{
+			margin:10px 0;
+			color: var(--muted);
+			font-size: 16px;
+		}
+		.advisor-highlight {
+			background: linear-gradient(135deg, rgba(0,102,204,0.08) 0%, rgba(0,180,166,0.06) 100%);
+			border-left: 5px solid transparent;
+			border-image: var(--gradient-primary) 1;
+			padding: 24px;
+			border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+			margin: 28px 0;
+			position: relative;
+			overflow: hidden;
+		}
+		.advisor-highlight::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 5px;
+			background: var(--gradient-primary);
+		}
+		.advisor-highlight p {
+			margin: 0;
+			font-weight: 600;
+			color: var(--aubergine);
+			font-size: 17px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.advisor-highlight i {
+			color: var(--tryba-blue);
+			font-size: 20px;
+		}
+
+		/* Liens & QR */
+		.links-qr{
+			display:grid;
+			grid-template-columns:2fr 1fr;
+			gap:32px;
+		}
+		@media(max-width:900px){.links-qr{grid-template-columns:1fr}}
+		.qr-box{
+			background:#fff;
+			border:2px dashed #cfd8e3;
+			border-radius:16px;
+			display:grid;
+			place-items:center;
+			min-height:240px;
+			color:var(--muted);
+			text-align:center;
+			padding:24px;
+			transition: var(--transition);
+		}
+		.qr-box:hover {
+			border-color: var(--tryba-blue);
+			transform: translateY(-4px);
+			box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+		}
+		.qr-img{
+			width:180px;
+			height:180px;
+			object-fit:contain;
+			display:block;
+			margin:0 auto 12px;
+			border-radius: 12px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		}
+
+		/* Contact section améliorée */
+		.contact-methods {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 24px;
+		}
+		.contact-card {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: 36px 24px;
+			border-radius: var(--border-radius);
+			background: var(--card);
+			box-shadow: 0 8px 24px var(--shadow), 0 2px 8px rgba(0,102,204,0.05);
+			transition: var(--transition);
+			border: 2px solid rgba(0,102,204,0.08);
+			position: relative;
+			overflow: hidden;
+		}
+		.contact-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background: var(--gradient-primary);
+			opacity: 0;
+			transition: var(--transition);
+		}
+		.contact-card:hover {
+			transform: var(--lift);
+			box-shadow: 0 24px 48px var(--shadow-hover), 0 8px 24px var(--shadow-colored);
+			border-color: rgba(0,102,204,0.15);
+		}
+		.contact-card:hover::before {
+			opacity: 1;
+		}
+		.contact-icon {
+			width: 80px;
+			height: 80px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(135deg, rgba(0,102,204,0.1) 0%, rgba(0,180,166,0.1) 100%);
+			border-radius: 50%;
+			margin-bottom: 20px;
+			font-size: 32px;
+			color: var(--tryba-blue);
+			transition: var(--transition);
+			box-shadow: 0 4px 12px rgba(0,102,204,0.1);
+		}
+		.contact-card:hover .contact-icon {
+			transform: scale(1.1);
+			background: linear-gradient(135deg, rgba(0,102,204,0.15) 0%, rgba(0,180,166,0.15) 100%);
+			box-shadow: 0 8px 20px rgba(0,102,204,0.2);
+		}
+		.contact-card h3 {
+			margin: 0 0 12px;
+			color: var(--aubergine);
+			font-size: 20px;
+		}
+		.contact-card p {
+			color: var(--muted);
+			margin-bottom: 16px;
+			flex-grow: 1;
+		}
+
+		footer{
+			background:linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,255,0.9) 100%);
+			border-top:2px solid rgba(0,102,204,0.1);
+			padding:40px 0;
+			box-shadow: 0 -8px 24px rgba(0,0,0,0.05), 0 -2px 8px rgba(0,102,204,0.05);
+			backdrop-filter: blur(8px);
+		}
+		footer .footer-inner{
+			display:flex;
+			flex-wrap:wrap;
+			gap:24px;
+			align-items:center;
+			justify-content:space-between;
+		}
+		footer .logo-box{
+			width:130px;
+			height:38px;
+			font-size: 20px;
+		}
+		footer .legal{
+			color:var(--muted);
+			font-size:14px;
+			max-width: 500px;
+		}
+		.footer-contact {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+		.footer-contact strong {
+			color: var(--aubergine);
+			font-size: 18px;
+		}
+
+		/* Reveal amélioré */
+		.reveal{
+			opacity:.001;
+			transform:translateY(20px);
+			transition:opacity .7s ease,transform .7s ease;
+		}
+		.reveal.in{
+			opacity:1;
+			transform:none;
+		}
+		@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
+
+		/* Nouveaux styles pour le slider */
+		.projects-slider {
+			margin: 40px 0;
+			position: relative;
+			border-radius: 16px;
+			overflow: hidden;
+			box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+		}
+		.slider-container {
+			display: flex;
+			transition: transform 0.5s ease;
+		}
+		.slide {
+			min-width: 100%;
+			position: relative;
+		}
+		.slide img {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+			display: block;
+		}
+		.slide-caption {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0,0.7);
+			color: white;
+			padding: 20px;
+			text-align: center;
+		}
+		.slider-nav {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: rgba(255,255,255,0.8);
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			z-index: 10;
+			transition: var(--transition);
+		}
+		.slider-nav:hover {
+			background: var(--tryba-blue);
+			color: white;
+		}
+		.slider-prev {
+			left: 15px;
+		}
+		.slider-next {
+			right: 15px;
+		}
+		.slider-dots {
+			position: absolute;
+			bottom: 15px;
+			left: 0;
+			right: 0;
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+		}
+		.slider-dot {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: rgba(255,255,255,0.5);
+			cursor: pointer;
+			transition: var(--transition);
+		}
+		.slider-dot.active {
+			background: white;
+			transform: scale(1.2);
+		}
+
+		/* Stats section */
+		.stats-section {
+			background: var(--tryba-blue);
+			color: white;
+			padding: 60px 0;
+			text-align: center;
+		}
+		.stats-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 30px;
+		}
+		@media (max-width: 900px) {
+			.stats-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		@media (max-width: 600px) {
+			.stats-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+		.stat-item {
+			padding: 20px;
+		}
+		.stat-number {
+			font-size: 42px;
+			font-weight: 800;
+			margin-bottom: 10px;
+			color: white;
+		}
+		.stat-label {
+			font-size: 18px;
+			font-weight: 500;
+			opacity: 0.9;
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<div class="brand">
+				<div class="logo-box">TRYBA</div>
+				<div>
+					<strong>CONCEPTEUR • FABRICANT • INSTALLATEUR</strong>
+					<small>Menuiseries extérieures | Meuse</small>
+				</div>
+			</div>
+			<div><button class="btn" id="openModalTop"><i class="fas fa-file-invoice"></i> Devis Gratuit</button></div>
+		</div>
+	</header>
+
+	<main id="main">
+		<section class="hero">
+			<div class="container hero-inner">
+				<div>
+					<h1>Arnaud Fourcade - Expert Tryba Meuse</h1>
+					<p>Votre conseiller commercial spécialisé en fenêtres, portes, volets, porte de garage et vérandas. <strong>Votre interlocuteur unique</strong> du début à la fin de votre projet.</p>
+					<div class="hero-cta">
+						<a class="btn" href="#contact"><i class="fas fa-envelope"></i> Contactez-moi</a>
+						<a class="btn secondary" href="#services"><i class="fas fa-search"></i> Découvrir les services</a>
+					</div>
+				</div>
+				<div class="hero-visual reveal" aria-label="Projet de menuiserie Tryba">
+					<div class="hero-badge">
+						<i class="fas fa-award" style="color: var(--sarcelle);"></i>
+						Expertise depuis 2018
+					</div>
+				</div>
+			</div>
+		</section>
+
+		
+		</section>
+
+		<section class="guarantee" id="triple-garantie">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal">La Triple Garantie Tryba</h2>
+					<p class="lead reveal">🛡️ La protection la plus complète du marché, de la fabrication à la pose.</p>
+				</div>
+				<div class="cards">
+					<article class="gcard reveal">
+						<div class="gmedia"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop" alt="Garantie produit 30 ans"></div>
+						<div class="gcontent"><h3>✅ GARANTIE PRODUIT 30 ANS</h3><p>La plus longue du marché — transmissible au futur propriétaire, valorise votre bien.</p></div>
+					</article>
+					<article class="gcard reveal">
+						<div class="gmedia"><img src="https://images.unsplash.com/photo-1697462248369-254119899872?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Garantie décennale"></div>
+						<div class="gcontent"><h3>✅ GARANTIE DÉCENNALE</h3><p>Couvre l'installation pendant 10 ans contre tout défaut de pose.</p></div>
+					</article>
+					<article class="gcard reveal">
+						<div class="gmedia"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Garantie fin de chantier"></div>
+						<div class="gcontent"><h3>✅ GARANTIE FIN DE CHANTIER</h3><p>Sécurité absolue : vos travaux sont menés à terme même en cas de défaillance locale.</p></div>
+					</article>
+				</div>
+				<div class="reveal" style="margin-top:24px">
+					<h3 style="margin:0 0 12px;color:var(--aubergine);">💪 Pourquoi choisir Tryba ?</h3>
+					<ul class="glist">
+						<li>⏳ 30 ans de tranquillité</li>
+						<li>🏠 Garantie cessible</li>
+						<li>🔧 Fabricant et installateur</li>
+						<li>🛡️ Sécurité totale</li>
+						<li>📋 Transparence contractualisée</li>
+					</ul>
+				</div>
+				<div class="guarantee-cta reveal">
+					<strong>Besoin d'une confirmation écrite de la Triple Garantie ?</strong>
+					<div>
+						<a class="btn" href="#contact"><i class="fas fa-file-pdf"></i> Documentation</a>
+						<a class="btn secondary" href="assets/tryba-carnet-de-garantie-04-02-2025-pdf.pdf" target="_blank" rel="noopener"><i class="fas fa-book-open"></i> Carnet de garantie</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="section">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal in">Services</h2>
+					<p class="subtitle reveal in">Menuiseries extérieures Tryba: performance, esthétique et durabilité.</p>
+				</div>
+					<div class="grid grid-3">
+					<div class="card reveal service-1 in">
+						<div class="card-icon"><i class="fas fa-window-maximize"></i></div>
+						<h3>Fenêtres</h3>
+						<p>PVC, aluminium, bois. Isolation et sécurité optimales.</p>
+					</div>
+					<div class="card reveal service-2 in">
+						<div class="card-icon"><i class="fas fa-door-open"></i></div>
+						<h3>Portes d'entrée</h3>
+						<p>Design, performance thermique, serrures multipoints.</p>
+					</div>
+					<div class="card reveal service-3 in">
+						<div class="card-icon"><i class="fas fa-home"></i></div>
+						<h3>Vérandas</h3>
+						<p>Espaces lumineux, confort été/hiver, sur-mesure.</p>
+					</div>
+					<div class="card reveal service-4 in">
+						<div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+						<h3>Volets</h3>
+						<p>Battants, roulants, motorisés. Sécurité et intimité.</p>
+					</div>
+					<div class="card reveal service-5 in">
+						<div class="card-icon"><i class="fas fa-garage"></i></div>
+						<h3>Portes de garage</h3>
+						<p>Nouveau: sectionnelles, basculantes, motorisation et sécurité.</p>
+					</div>
+					<div class="card reveal service-6 in">
+						<div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+						<h3>Conseil &amp; Devis</h3>
+						<p>Réponse sous 48h. Étude et devis gratuits, accompagnement complet.</p>
+					</div>
+				</div>>
+				</div>
+			</div>
+		</section>
+
+		<!-- Offre Triple Performance Tryba -->
+		<section class="offer" id="offre-triple-performance">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal">L'Offre Triple Performance Tryba</h2>
+					<p class="lead reveal">Choisir ne coûte pas plus cher 🔥 – optimisez performance thermique, sécurité et acoustique.</p>
+				</div>
+				<div class="offer-cards">
+					<article class="ocard reveal">
+						<span class="badge-offer"><i class="fas fa-fire"></i> Triple Vitrage Try'ver</span>
+						<h3>4/12G/4/12G/4</h3>
+						<p>Isolation maximale, économies d'énergie pour un confort toute l'année.</p>
+					</article>
+					<article class="ocard reveal">
+						<span class="badge-offer"><i class="fas fa-shield-alt"></i> Sécurité Renforcée</span>
+						<h3>4/16G/44/2</h3>
+						<p>Protection des personnes et retardateur d'effraction.</p>
+					</article>
+					<article class="ocard reveal">
+						<span class="badge-offer"><i class="fas fa-volume-mute"></i> Phonique Phony'2</span>
+						<h3>4/16/8</h3>
+						<p>Indice d'affaiblissement acoustique jusqu'à 43 dB.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal">Avantages Tryba</h2>
+					<p class="subtitle reveal">Des preuves, pas des promesses.</p>
+				</div>
+				<div class="grid grid-3 advantages">
+					<div class="picto reveal"><img src="assets/Picto_3matériaux_fond_blanc.jpg" alt="3 matériaux: PVC, Alu, Bois" /><div class="label">3 matériaux: PVC, Alu, Bois</div></div>
+					<div class="picto reveal"><img src="assets/Picto_Fabrication_Française_fond_blanc.jpg" alt="Fabrication Française" /><div class="label">Fabrication Française</div></div>
+					<div class="picto reveal"><img src="assets/Picto_Financement_fond_blanc.jpg" alt="Solutions de Financement" /><div class="label">Solutions de Financement</div></div>
+					<div class="picto reveal"><img src="assets/Picto_Pose_Excellence_fond_blanc.jpg" alt="Pose d'Excellence" /><div class="label">Pose d'Excellence</div></div>
+					<div class="picto reveal"><img src="assets/Picto_produit_partenaire_fond_blanc.jpg" alt="Produits Partenaires" /><div class="label">Produits Partenaires</div></div>
+					<div class="picto reveal"><img src="assets/Picto_Relation_client_fond_blanc.jpg" alt="Relation Client Personnalisée" /><div class="label">Relation Client Personnalisée</div></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section conseiller améliorée -->
+		<section class="advisor-section" id="conseiller">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal">Votre conseiller dédié</h2>
+					<p class="subtitle reveal">Un interlocuteur unique pour vous accompagner de A à Z</p>
+				</div>
+				<div class="advisor">
+					<div class="advisor-photo reveal in">
+						<img src="assets/moi11.jpg" alt="Arnaud Fourcade - Conseiller Tryba Meuse" loading="lazy">
+						<div class="advisor-badge">
+							<i class="fas fa-star"></i>
+							Expert certifié Tryba
+						</div>
+					</div>
+					<div class="bio reveal">
+						<div class="name">Arnaud Fourcade</div>
+						<span class="title">Conseiller commercial Tryba - Spécialiste Meuse</span>
+						<p>Je suis votre interlocuteur unique pour tous vos projets de menuiserie dans la Meuse. De l'étude technique à l'installation finale, je vous accompagne personnellement à chaque étape pour garantir votre entière satisfaction.</p>
+						
+						<div class="advisor-highlight">
+							<p><i class="fas fa-quote-left"></i> Je m'engage à vous conseiller la solution la plus adaptée à vos besoins et à votre budget.</p>
+						</div>
+
+						<strong>Mon accompagnement sur-mesure :</strong>
+						<ul>
+							<li><i class="fas fa-check" style="color:var(--sarcelle);"></i> Conseil personnalisé à domicile sans engagement</li>
+							<li><i class="fas fa-check" style="color:var(--sarcelle);"></i> Devis détaillé gratuit sous 48h</li>
+							<li><i class="fas fa-check" style="color:var(--sarcelle);"></i> Suivi personnalisé de votre projet</li>
+							<li><i class="fas fa-check" style="color:var(--sarcelle);"></i> Coordination avec les équipes de pose</li>
+							<li><i class="fas fa-check" style="color:var(--sarcelle);"></i> Garantie de qualité et SAV réactif</li>
+						</ul>
+						<p><strong>Zone d'intervention :</strong> Département de la Meuse et limitrophes.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="section">
+			<div class="container">
+				<div class="section-title">
+					<h2 class="reveal">Contact</h2>
+					<p class="subtitle reveal">Étude et devis gratuits, réponse sous 48h.</p>
+				</div>
+				<div class="contact-methods">
+					<div class="contact-card reveal">
+						<div class="contact-icon"><i class="fas fa-phone"></i></div>
+						<h3>Téléphone</h3>
+						<p>Discutons de votre projet par téléphone</p>
+						<p class="big" id="phoneReveal"><a href="#" class="btn accent" data-reveal-type="phone" data-full="+33617385551">Afficher le numéro</a></p>
+						<small>Du lundi au samedi, 8h30-18h30 </small>
+					</div>
+					<div class="contact-card reveal">
+						<div class="contact-icon"><i class="fas fa-envelope"></i></div>
+						<h3>Email</h3>
+						<p>Envoyez-moi vos questions ou documents</p>
+						<p class="big"><button class="btn" id="openModalEmail">Pour toute autre demande</button></p>
+						<small>Réponse sous 48h ouvrées</small>
+					</div>
+					<div class="contact-card reveal">
+						<div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+						<h3>Secteur</h3>
+						<p>Département de la Meuse</p>
+						<p><span class="btn secondary">Déplacements gratuits</span></p>
+						<small></small>
+					</div>
+					<div class="contact-card reveal">
+						<div class="contact-icon"><i class="fas fa-calendar-check"></i></div>
+						<h3>Rendez-vous</h3>
+						<p>À domicile ou au showroom partenaire</p>
+						<p><a href="#contact" class="btn">Prendre RDV</a></p>
+						<small>Étude gratuite et sans engagement</small>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container links-qr">
+				<div>
+					<h2 class="reveal">Liens utiles</h2>
+					<div class="grid grid-2">
+						<a class="card reveal" href="https://www.tryba.com" target="_blank" rel="noopener"><h3>🏠 Site Tryba</h3><p>Découvrir l'univers Tryba</p></a>
+						<a class="card reveal" href="https://tvporte-fr.tryba.com/" target="_blank" rel="noopener"><h3>🚪 Configurateur portes</h3><p>Personnalisez votre porte d'entrée</p></a>
+						<a class="card reveal" href="https://www.tryba.com/carnet-de-garantie/" target="_blank" rel="noopener"><h3>🛡️ Garanties</h3><p>Toutes les garanties Tryba</p></a>
+						<a class="card reveal" href="https://www.service-public.fr/particuliers/vosdroits/F1328" target="_blank" rel="noopener"><h3>💰 Aides & Subventions</h3><p>Informations officielles</p></a>
+					</div>
+				</div>
+				<div class="qr-box reveal">
+					<img class="qr-img" src="assets/qr-copie.jpg" alt="QR Code WhatsApp">
+					<p style="margin:10px 0 0;"><strong style="color:var(--aubergine);">Me contacter immédiatement</strong></p>
+					<p style="margin:6px 0 0;">Scannez le QR pour discuter avec Arnaud.</p>
+					<p style="margin:8px 0 0;"><a class="btn accent" href="https://wa.me/message/WDPURVB3MSBBP1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Ouvrir WhatsApp</a></p>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container footer-inner">
+			<div class="brand"><div class="logo-box">TRYBA</div></div>
+			<div class="footer-contact">
+				<strong>Arnaud Fourcade - Conseiller Tryba Meuse</strong>
+				<div class="legal">
+					(1) Fabrication française : Hors fenêtre en bois, fenêtre de toit, portes d'entrée en bois, volets battants et pliants.<br/>
+					(2) Garantie jusqu'à 30 ans : Suivant carnet de garantie.
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Modal de contact (Formspree) -->
+	<div class="modal-backdrop" id="contactModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:2000;backdrop-filter: blur(4px);">
+		<div class="modal" role="document" style="background:#fff;width:min(560px,92vw);border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.25);padding:28px;border:1px solid #e9eef5;max-height:90vh;overflow-y:auto;">
+			<header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+				<h3 style="margin:0;color:var(--aubergine);font-size:24px;">Demande de Devis Gratuit</h3>
+				<button class="close" id="closeModal" aria-label="Fermer" style="background:transparent;border:none;font-size:24px;cursor:pointer;color:var(--muted);transition:var(--transition);padding:5px;">✕</button>
+			</header>
+			<div id="successNote" style="display:none;background:#e8f6ef;color:#0a7b47;border:1px solid #bfe6d1;padding:14px 16px;border-radius:12px;margin-bottom:20px;font-weight:500;">
+				<i class="fas fa-check-circle"></i> Merci ! Votre message a été envoyé. Je vous contacte dans les plus brefs délais.
+			</div>
+			<form id="quoteForm" action="https://formspree.io/f/xrbazwoz" method="POST" novalidate>
+				<input type="hidden" name="_subject" value="Demande de devis – Site Arnaud Fourcade" />
+				<div class="form-field" style="display:flex;flex-direction:column;gap:8px;margin:16px 0">
+					<label for="name" style="font-weight:600;color:var(--aubergine)">Nom / Prénom *</label>
+					<input id="name" name="name" type="text" required placeholder="Votre nom et prénom" style="border:1px solid #cfd8e3;border-radius:12px;padding:14px;font-size:16px;transition:var(--transition);" onfocus="this.style.borderColor='var(--tryba-blue)'">
+					<div class="error" data-error-for="name" style="color:#c72c41;font-size:14px"></div>
+				</div>
+				<div class="form-field" style="display:flex;flex-direction:column;gap:8px;margin:16px 0">
+					<label for="phone" style="font-weight:600;color:var(--aubergine)">Téléphone *</label>
+					<input id="phone" name="phone" type="tel" required placeholder="06 12 34 56 78" style="border:1px solid #cfd8e3;border-radius:12px;padding:14px;font-size:16px;transition:var(--transition);" onfocus="this.style.borderColor='var(--tryba-blue)'">
+					<div class="error" data-error-for="phone" style="color:#c72c41;font-size:14px"></div>
+					<div class="form-help" style="color:var(--muted);font-size:14px">Nous vous rappelons sous 48h.</div>
+				</div>
+				<div class="form-field" style="display:flex;flex-direction:column;gap:8px;margin:16px 0">
+					<label for="email" style="font-weight:600;color:var(--aubergine)">Email</label>
+					<input id="email" name="email" type="email" placeholder="vous@exemple.fr" style="border:1px solid #cfd8e3;border-radius:12px;padding:14px;font-size:16px;transition:var(--transition);" onfocus="this.style.borderColor='var(--tryba-blue)'">
+					<div class="error" data-error-for="email" style="color:#c72c41;font-size:14px"></div>
+				</div>
+				<div class="form-field" style="display:flex;flex-direction:column;gap:8px;margin:16px 0">
+					<label for="message" style="font-weight:600;color:var(--aubergine)">Message *</label>
+					<textarea id="message" name="message" required placeholder="Décrivez votre projet..." style="border:1px solid #cfd8e3;border-radius:12px;padding:14px;min-height:140px;font-size:16px;transition:var(--transition);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;" onfocus="this.style.borderColor='var(--tryba-blue)'"></textarea>
+					<div class="error" data-error-for="message" style="color:#c72c41;font-size:14px"></div>
+				</div>
+				<div style="display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:16px;">
+					<button type="button" class="btn secondary" id="cancelModal" style="padding:12px 20px;">Annuler</button>
+					<button type="submit" class="btn" style="padding:12px 24px;"><i class="fas fa-paper-plane"></i> Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// Ripple effect
+		document.querySelectorAll('.btn').forEach(function(btn){
+			btn.addEventListener('click',function(e){
+				var r = btn.getBoundingClientRect();
+				var s = document.createElement('span');
+				s.className = 'ripple';
+				s.style.left = (e.clientX - r.left) + 'px';
+				s.style.top = (e.clientY - r.top) + 'px';
+				btn.appendChild(s);
+				setTimeout(function(){ s.remove(); }, 650);
+			});
+		});
+
+		// Reveal
+		(function(){
+			var sel = ['.hero-visual','.gcard','.card','.picto','.section h2','.section .subtitle','.guarantee h2','.guarantee .lead', '.stat-item', '.slide', '.contact-card'].join(',');
+			document.querySelectorAll(sel).forEach(function(el){ el.classList.add('reveal'); });
+			var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14});
+			document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+		})();
+
+		// Anchor offset considering sticky header
+		document.querySelectorAll('a[href^="#"]').forEach(function(a){
+			a.addEventListener('click',function(e){
+				var id = a.getAttribute('href');
+				if(id.length>1 && document.querySelector(id)){
+					e.preventDefault();
+					var header = document.querySelector('header.site-header');
+					var top = document.querySelector(id).getBoundingClientRect().top + window.pageYOffset - (header? header.offsetHeight + 8 : 0);
+					window.scrollTo({ top: top, behavior:'smooth' });
+				}
+			});
+		});
+
+		// Phone reveal
+		document.querySelectorAll('[data-reveal-type="phone"]').forEach(function(btn){
+			btn.addEventListener('click',function(e){
+				e.preventDefault();
+				var full = btn.getAttribute('data-full');
+				var a = document.createElement('a');
+				a.href = 'tel:' + full;
+				a.textContent = '06 17 38 55 51';
+				a.className = 'btn accent';
+				a.innerHTML = '<i class="fas fa-phone"></i> 06 17 38 55 51';
+				btn.parentNode.replaceChild(a, btn);
+			});
+		});
+
+		// Modal open/close
+		var modal = document.getElementById('contactModal');
+		function openModal(){ modal.style.display='flex'; document.body.style.overflow='hidden'; }
+		function closeModal(){ modal.style.display='none'; document.body.style.overflow=''; }
+		document.getElementById('openModalTop')?.addEventListener('click',function(e){ e.preventDefault(); openModal(); });
+		document.getElementById('openModalEmail')?.addEventListener('click',function(e){ e.preventDefault(); openModal(); });
+		document.getElementById('closeModal')?.addEventListener('click',closeModal);
+		document.getElementById('cancelModal')?.addEventListener('click',closeModal);
+		modal.addEventListener('click',function(e){ if(e.target===modal) closeModal(); });
+
+		// Formspree submit with client-side validation
+		var form = document.getElementById('quoteForm');
+		var successNote = document.getElementById('successNote');
+		function setError(name, message){ var el = document.querySelector('.error[data-error-for="'+name+'"]'); if(el) el.textContent = message || ''; }
+		function validate(){
+			var name = document.getElementById('name').value.trim();
+			var phone = document.getElementById('phone').value.trim();
+			var email = document.getElementById('email').value.trim();
+			var message = document.getElementById('message').value.trim();
+			var ok = true; setError('name'); setError('phone'); setError('email'); setError('message');
+			if(!name){ setError('name','Veuillez renseigner votre nom et prénom.'); ok=false; }
+			if(!phone || !/^\+?\d[\d\s.-]{7,}$/.test(phone)){ setError('phone','Numéro invalide.'); ok=false; }
+			if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setError('email','Email invalide.'); ok=false; }
+			if(!message){ setError('message','Décrivez votre projet.'); ok=false; }
+			return ok;
+		}
+		form?.addEventListener('submit', async function(e){
+			e.preventDefault();
+			if(!validate()) return;
+			try{
+				var formData = new FormData(form);
+				var resp = await fetch(form.action, { method: form.method, body: formData, headers:{'Accept':'application/json'} });
+				if(resp.ok){ 
+					successNote.style.display='block'; 
+					form.reset(); 
+					form.style.display = 'none';
+					setTimeout(() => {
+						closeModal();
+						successNote.style.display='none';
+						form.style.display = 'block';
+					}, 3000);
+				}
+				else{ alert("Une erreur est survenue lors de l'envoi. Merci de réessayer."); }
+			}catch(err){ alert("Impossible d'envoyer le formulaire pour le moment."); }
+		});
+		
+		// Lazy images
+		document.querySelectorAll('img:not([loading])').forEach(function(img){ img.setAttribute('loading','lazy'); });
+		
+		// Slider functionality
+		const initSlider = () => {
+			const sliderContainer = document.getElementById('sliderContainer');
+			const slides = document.querySelectorAll('.slide');
+			const prevBtn = document.querySelector('.slider-prev');
+			const nextBtn = document.querySelector('.slider-next');
+			const dotsContainer = document.querySelector('.slider-dots');
+			
+			let currentSlide = 0;
+			const slideCount = slides.length;
+			
+			// Create dots
+			for (let i = 0; i < slideCount; i++) {
+				const dot = document.createElement('div');
+				dot.classList.add('slider-dot');
+				if (i === 0) dot.classList.add('active');
+				dot.addEventListener('click', () => goToSlide(i));
+				dotsContainer.appendChild(dot);
+			}
+			
+			const dots = document.querySelectorAll('.slider-dot');
+			
+			function goToSlide(index) {
+				currentSlide = index;
+				sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+				
+				// Update dots
+				dots.forEach((dot, i) => {
+					dot.classList.toggle('active', i === currentSlide);
+				});
+			}
+			
+			function nextSlide() {
+				currentSlide = (currentSlide + 1) % slideCount;
+				goToSlide(currentSlide);
+			}
+			
+			function prevSlide() {
+				currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+				goToSlide(currentSlide);
+			}
+			
+			// Event listeners
+			prevBtn.addEventListener('click', prevSlide);
+			nextBtn.addEventListener('click', nextSlide);
+			
+			// Auto slide
+			let slideInterval = setInterval(nextSlide, 5000);
+			
+			// Pause on hover
+			const slider = document.querySelector('.projects-slider');
+			slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+			slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
+		};
+		
+		// Initialize slider when DOM is loaded
+		document.addEventListener('DOMContentLoaded', initSlider);
+		
+		// Animate stats
+		function animateStats() {
+			const stat1 = document.getElementById('stat1');
+			const stat2 = document.getElementById('stat2');
+			const stat3 = document.getElementById('stat3');
+			const stat4 = document.getElementById('stat4');
+			
+			if (stat1 && stat1.getBoundingClientRect().top < window.innerHeight * 0.8) {
+				animateValue(stat1, 0, 100, 2000);
+				animateValue(stat2, 0, 95, 2000);
+				animateValue(stat3, 0, 4, 2000);
+				// Remove event listener after animation
+				window.removeEventListener('scroll', animateStatsOnScroll);
+			}
+		}
+		
+		function animateValue(element, start, end, duration) {
+			let startTimestamp = null;
+			const step = (timestamp) => {
+				if (!startTimestamp) startTimestamp = timestamp;
+				const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+				element.innerHTML = Math.floor(progress * (end - start) + start);
+				if (progress < 1) {
+					window.requestAnimationFrame(step);
+				}
+			};
+			window.requestAnimationFrame(step);
+		}
+		
+		function animateStatsOnScroll() {
+			animateStats();
+		}
+		
+		window.addEventListener('scroll', animateStatsOnScroll);
+		// Initial check in case stats are already in view
+		animateStats();
+	</script>
+</body>
+</html>
